@@ -5,7 +5,7 @@ namespace App\Http\Requests\SkillRequest;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreSkillRequest extends FormRequest
+class UpdateSkillRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,6 +22,7 @@ class StoreSkillRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
+
     public function rules()
     {
         return [
@@ -29,7 +30,7 @@ class StoreSkillRequest extends FormRequest
             'name' => ['required', 'min:5', 'max:20'],
             //'slug' => ['required', 'unique:skills,slug,' . $this->skill->id]
             'slug' => ['required', Rule::unique('skills')->ignore($this->skill)],
-            'image' => ['required', 'image', 'mimes:jpg,jpeg,png', 'max:50124']
+            'image' => ['mimes:jpg,jpeg,png', 'max:50124']
 
         ];
     }
